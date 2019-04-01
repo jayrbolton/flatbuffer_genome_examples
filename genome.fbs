@@ -1,0 +1,80 @@
+namespace KBase.Genome;
+
+table Publication {
+  pubmedid: float;
+  source: string;
+  title: string;
+  web_address: string;
+  pub_year: string;
+  authors: string;
+  journal: string;
+}
+
+table OntologyEvent {
+  id: string;
+  ontology_ref: string;
+  method: string;
+  method_version: string;
+  timestamp: string;
+  eco: string;
+  description: string;
+}
+
+table InferenceInfo {
+  category: string;
+  type: string;
+  evidence: string;
+}
+
+table FeatureLocation {
+  contig_id: string;
+  // ???
+}
+
+table Feature {
+  id: string;
+  location: [FeatureLocation];
+  functions: [string];
+  functional_descriptions: [string];
+  note: string;
+  md5: string;
+  protein_translation: string;
+  protein_translation_len: short;
+  dna_sequence: string;
+  dna_sequence_len: int;
+}
+
+table Genome {
+  id: string;
+  scientific_name: string;
+  domain: string;
+  warnings: [string];
+  genome_tiers: [string];
+  genetic_code: int;
+  dna_size: int;
+  num_contigs: int;
+  molecule_type: string;
+  contig_lengths: [int];
+  contig_ids: [string];
+  source: string;
+  source_id: string;
+  md5: string;
+  taxonomy: string;
+  gc_content: float;
+  publications: [Publication];
+  ontology_events: [OntologyEvent];
+  features: [Feature];
+  non_coding_features: [Feature];
+  cdss: [Feature];
+  mrnas: [Feature];
+  assembly_ref: string;
+  taxon_ref: string;
+  genbank_file_ref: string;
+  gff_handle_ref: string;
+  release: string;
+  quality_scores: [GenomeQualityScore];
+  suspect: bool;
+  genome_type: string;
+}
+
+root_type Genome;
